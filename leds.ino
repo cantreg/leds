@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define NUM_LEDS 42
+#define NUM_LEDS 24
 #define NUM_FAN 18
 
 #define PORT_LED_1 3
@@ -77,7 +77,6 @@ class TransitionAllFadeToBlack : public Transition {
       fade += 5;
       if (fade >= 180) fade = 180;
       this->leds.fadeToBlackBy(fade);
-      //FastLED.delay(10);
     }
     bool endCondition() {
       return fade >= 180;
@@ -255,8 +254,6 @@ class TransitionComposition {
           delete this->transitions[i];
       }
       delete[] this->transitions;
-//      Serial.print("destruct\n");
-//      Serial.flush();
     }
 };
 
@@ -336,12 +333,9 @@ int comp_i = 0;
 TransitionComposition *transitions_comp;
 
 void setup() {
-  Serial.begin(9600);
-  Serial.print("setup\n");
-  Serial.flush();
+	
   srand(time(0));
 
-  //
   leds1->fill_solid(black);
   FastLED.addLeds<NEOPIXEL, PORT_LED_1>(*leds1, leds1->size());
   fan1->fill_solid(black);
@@ -350,7 +344,7 @@ void setup() {
   FastLED.addLeds<NEOPIXEL, PORT_FAN_2>(*fan2, fan2->size());
   fan3->fill_solid(black);
   FastLED.addLeds<NEOPIXEL, PORT_FAN_3>(*fan3, fan3->size());
-  //
+  
   FastLED.show();
   
   transitions_comp = get_comp(comp_i);
@@ -358,9 +352,6 @@ void setup() {
 }
 
 void loop() {
-
-//  Serial.print("loop\n");
-//  Serial.flush();
 
   if(transitions_comp != NULL) {
     for (int j = 0; j < transitions_comp->count; j++) {
