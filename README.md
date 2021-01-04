@@ -3,7 +3,7 @@ Arduino Gelid Codi6 programmable controller effects for ARGB 3pin 5v led strips 
 * Uses FastLed as a protocol implementation.
 * Uses about a half of available flash memory ~ 16Kb.
 * Uses somewhat less than **2048 bytes** of available memory for single effect (transition).
-A careful ```free()``` **is required** if you plan on adding your own effects.
+* A careful ```free()``` **is required** if you plan on adding your own effects.
 
 # Defaults 
 One 24 led long ARGB strip (2x daisy-chained Deepcool RGB 200PRO) in port 3.
